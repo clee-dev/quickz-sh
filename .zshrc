@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -104,8 +111,8 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+# if [[ -n $SSH_CONNECTION ]]; then 
+export EDITOR='code'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -148,7 +155,7 @@ autoload -U compinit && compinit        # zsh-completions
 SAVEHIST=50000      #save upto 50,000 lines in history. oh-my-zsh default is 10,000
 #setopt hist_ignore_all_dups     # dont record duplicated entries in history during a single session
 
-alias myip="wget -qO- https://wtfismyip.com/text"	# quickly show external ip address
+alias wip="wget -qO- https://wtfismyip.com/text"	# quickly show external ip address
 alias l="ls -lah"
 alias x="exit"
 alias k="k -h"						# show human readable filesizes, in kb, mb etc
@@ -160,10 +167,10 @@ https() {                                           # make httpie use https
 # cheat sheets (github.com/chubin/cheat.sh), find out how to use commands
 # example 'cheat tar'
 # for language specific question supply 2 args first for language, second as the question
-# eample: cheat python3 execute external program
+# eample cheat python execute+external+program
 cheat() {
     if [ "$2" ]; then
-        curl "https://cheat.sh/$1/$2+$3+$4+$5+$6+$7+$8+$9+$10"
+        curl "https://cheat.sh/$1/$2"
     else
         curl "https://cheat.sh/$1"
     fi
@@ -177,7 +184,6 @@ speedtest() {
     curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
 }
 
-# Find dictionary definition
 dict() {
     if [ "$3" ]; then
         curl "dict://dict.org/d:$1 $2 $3"
@@ -188,6 +194,13 @@ dict() {
     fi
 }
 
+export TODOTXT_DEFAULT_ACTION=ls
+alias t='todo.sh -n -t'
+alias todo='t'
+
 c() {
     cd /mnt/c
 }
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
