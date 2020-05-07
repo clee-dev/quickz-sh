@@ -177,10 +177,6 @@ speedtest() {
     curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
 }
 
-dadjoke() {
-    curl https://icanhazdadjoke.com
-}
-
 # Find dictionary definition
 dict() {
     if [ "$3" ]; then
@@ -192,22 +188,6 @@ dict() {
     fi
 }
 
-# Find geo info from IP
-ipgeo() {
-    # Specify ip or your ip will be used
-    if [ "$1" ]; then
-        curl "http://api.db-ip.com/v2/free/$1"
-    else
-        curl "http://api.db-ip.com/v2/free/$(myip)"
-    fi
-}
-
-# Show covid-19 spread stats
-corona() {
-    # Specify country otherwise shows stats for all
-    if [ "$1" ]; then
-        curl "https://corona-stats.online/$1"
-    else
-        curl "https://corona-stats.online"
-    fi
+c() {
+    cd /mnt/c
 }
